@@ -85,5 +85,5 @@ if __name__ == "__main__":
 	cert_fingerprint = cert_fingerprint(cert_location)
 
 	for sdk_dir in os.listdir(simulator_dir):
-		if not sdk_dir.startswith('.') and sdk_dir != 'User':
+		if not sdk_dir.startswith('.') and sdk_dir != 'User' and sdk_dir != 'Library':
 			add_to_truststore(sdk_dir, cert_fingerprint)

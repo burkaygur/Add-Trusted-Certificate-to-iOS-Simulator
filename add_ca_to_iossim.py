@@ -48,8 +48,8 @@ def cert_fingerprint(cert_location):
 		return cert_fingerprint_via_openssl(cert_location)	
 
 
-def add_to_truststore(sdk_dir, cert_fingerprint):
-	tpath = simulator_dir+sdk_dir+truststore_path
+def add_to_truststore(sdk_dir, cert_fingerprint, tpath):
+	#tpath = simulator_dir+sdk_dir+truststore_path
 
 	sha1="X'"+cert_fingerprint.strip()+"'"
 
@@ -84,6 +84,9 @@ if __name__ == "__main__":
 
 	cert_fingerprint = cert_fingerprint(cert_location)
 
+	simulator_dir = os.getenv('HOME')+"/Library/Developer/CoreSimulator/Devices"
+
 	for sdk_dir in os.listdir(simulator_dir):
-		if not sdk_dir.startswith('.') and sdk_dir != 'User' and sdk_dir != 'Library':
-			add_to_truststore(sdk_dir, cert_fingerprint)
+		tpath = simulator_dir  + "/" + sdk_dir + "/data" + truststore_path
+		if os.path.exists(tpath):
+			add_to_truststore("", cert_fingerprint, tpath)

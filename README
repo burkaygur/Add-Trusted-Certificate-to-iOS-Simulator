@@ -6,7 +6,7 @@ python add_ca_to_iossim.py <Path to CA Certificate to Import>
 
 Tested using:
 
-Python 3
+Python 2.7.5
 Mac OS X Mavericks
 Xcode 6
 

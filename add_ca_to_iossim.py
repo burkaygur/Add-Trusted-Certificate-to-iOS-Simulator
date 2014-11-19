@@ -54,7 +54,7 @@ def add_to_truststore(sdk_dir, cert_fingerprint, tpath):
 	sha1="X'"+cert_fingerprint.strip()+"'"
 
 	try:
-		conn = sqlite3.connect(simulator_dir+sdk_dir+truststore_path)
+		conn = sqlite3.connect(tpath)
 		c = conn.cursor()
 		sql = 'insert into tsettings values (%s,%s,%s,%s)'%(sha1, "randomblob(16)", "randomblob(16)", "randomblob(16)")
 		c.execute(sql)
